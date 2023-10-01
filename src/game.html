@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game title</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="planet purple-planet planet-left large">
+      <div class="planet-crater-med"></div>
+      <div class="planet-crater-small"></div>
+      <div class="planet-right-row"></div>
+      <div class="planet-left-row"></div>
+    </div>
+    <div class="planet red-planet planet-right small">
+      <div class="planet-crater-med red"></div>
+      <div class="planet-crater-small red"></div>
+      <div class="planet-right-row red"></div>
+      <div class="planet-left-row red"></div>
+    </div>
+    <main>
+      <div class="score" id="score"></div>
+      <div id="word"></div>
+      <div id="bullet" class="bullet"></div>
+      <div class="rocket-container">
+        <div class="rocket-head"></div>
+        <div class="rocket-cabine">
+          <div class="rocket-window"></div>
+        </div>
+        <div class="rocket-body"></div>
+        <div class="rocket-left-wing"></div>
+        <div class="rocker-left-wing-edge"></div>
+        <div class="rocket-right-wing"></div>
+        <div class="rocker-right-wing-edge"></div>
+        <div class="rocket-engine"></div>
+        <div class="wind">
+          <div class="rocket-wind-1"></div>
+          <div class="rocket-wind-2"></div>
+          <div class="rocket-wind-3"></div>
+          <div class="rocket-wind-4"></div>
+          <div class="rocket-wind-5"></div>
+        </div>
+      </div>
+      <dialog id="lose-dialog">
+        <p>Has perdido</p>
+        <p>
+          El universo sufrirá ahora por mala ortografía y errores de typing.
+        </p>
+        <p id="losing-score"></p>
+        <a class="go-home-link" href="index.html">Ir al inicio</a>
+        <button class="restart-btn">Volver a jugar</button>
+      </dialog>
+      <dialog id="win-dialog">
+        <p>¡Has ganado!</p>
+        <p>
+          El universo está a salvo de errores ortográficos y de typing... Por el
+          momento.
+        </p>
+        <a class="go-home-link" href="index.html">Ir al inicio</a>
+        <button class="restart-btn">Volver a jugar</button>
+      </dialog>
+    </main>
+    <script type="module" src="./assets/js/data.js"></script>
+    <script type="module" src="./assets/js/utils.js"></script>
+    <script type="module" src="./assets/js/index.js"></script>
+    <script type="module" src="./assets/js/gameInitializer.js"></script>
+  </body>
+</html>

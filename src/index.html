@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="stylesheet" href="./assets/css/home.css" />
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <!-- Primary Meta Tags -->
+    <title>Órbita - Juego de typing</title>
+    <meta name="title" content="Órbita - Juego de typing" />
+    <meta
+      name="description"
+      content="Conoce Órbita, un juego de typing en el que podrás proteger al universo de la mala ortografía y mejorar tus habilidades con el teclado."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://programacion-es.dev/orbita" />
+    <meta property="og:title" content="Órbita - Juego de typing" />
+    <meta
+      property="og:description"
+      content="Conoce Órbita, un juego de typing en el que podrás proteger al universo de la mala ortografía y mejorar tus habilidades con el teclado."
+    />
+    <meta
+      property="og:image"
+      content="https://programacion-es.dev/orbita/assets/img/orbita-banner.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://programacion-es.dev/orbita" />
+    <meta property="twitter:title" content="Órbita - Juego de typing" />
+    <meta
+      property="twitter:description"
+      content="Conoce Órbita, un juego de typing en el que podrás proteger al universo de la mala ortografía y mejorar tus habilidades con el teclado."
+    />
+    <meta
+      property="twitter:image"
+      content="https://programacion-es.dev/orbita/assets/img/orbita-banner.png"
+    />
+  </head>
+  <body>
+    <div class="main-home-container">
+      <div class="planet purple-planet planet-left large">
+        <div class="planet-crater-med"></div>
+        <div class="planet-crater-small"></div>
+        <div class="planet-right-row"></div>
+        <div class="planet-left-row"></div>
+      </div>
+      <div class="planet red-planet planet-right small">
+        <div class="planet-crater-med red"></div>
+        <div class="planet-crater-small red"></div>
+        <div class="planet-right-row red"></div>
+        <div class="planet-left-row red"></div>
+      </div>
+      <main>
+        <div class="card-title">
+          <div class="keyboard-key">Ó</div>
+          <h1>rbit</h1>
+          <div class="keyboard-key">A</div>
+        </div>
+        <div class="main-card-container">
+          <a href="/src/game.html">Nueva partida</a>
+          <button id="instructions-btn">Instrucciones</button>
+        </div>
+      </main>
+      <footer>
+        Developed with ♡, HTML, CSS and JS by
+        <a href="https://programacion-es.dev/redes/">Programación en español</a>
+      </footer>
+    </div>
+    <dialog id="instructions-modal">
+      <section>
+        <h1>Esta es tu misión</h1>
+        <p>
+          Te han otorgado el rango de capitán, lo sé, no tienes experiencia,
+          pero es lo que hay.
+        </p>
+        <p>
+          Tu misión es dirigir una ofensiva contra la lluvia de palabras
+          espaciales para demostrar tus habilidades ante el gran control
+          universal (vamos, tu teclado).
+        </p>
+        <p>Gana y habrás ganado la batalla.</p>
+        <p>
+          Pierde, y el universo estará condenado a faltas infinitas de
+          ortografía por el resto de los tiempos (en gran parte por tu culpa).
+        </p>
+        <button id="close-instructions-modal-btn">¡Adelante!</button>
+      </section>
+    </dialog>
+    <script src="./assets/js/modalControls.js"></script>
+  </body>
+</html>

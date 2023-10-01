@@ -1,0 +1,415 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+button,
+span,
+a {
+  font-family: monospace;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color: #e2e2e2;
+  background: radial-gradient(ellipse at bottom, #012651 0%, #090a0f 100%);
+  font-family: monospace;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  font-size: 25px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.score {
+  display: flex;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  justify-content: flex-end;
+  padding: 0 20px 0 0;
+  flex-direction: row;
+}
+
+.planet {
+  border-radius: 50%;
+  position: absolute;
+  animation: 2s planet infinite;
+  animation-timing-function: linear;
+}
+
+.purple-planet {
+  background-color: #673ab7;
+  box-shadow: 0px 0px 20px 7px #965bff;
+}
+
+.red-planet {
+  background-color: #b73a3a;
+  box-shadow: 0px 0px 20px 7px #ff5b5b;
+}
+
+.small {
+  width: 150px;
+  height: 150px;
+}
+
+.large {
+  width: 200px;
+  height: 200px;
+}
+
+.planet-right {
+  right: -15px;
+  bottom: 200px;
+}
+
+.planet-left {
+  left: -15px;
+  top: -16px;
+}
+
+.red-planet > .planet-crater-med {
+  background-color: #79222257;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 120px;
+  left: 50px;
+  border-radius: 50%;
+}
+
+.red-planet > .planet-crater-small {
+  background-color: #79222257;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 40px;
+  left: 150px;
+  border-radius: 50%;
+}
+
+.red-planet > .planet-right-row {
+  width: 127px;
+  height: 13px;
+  background-color: #792222;
+  position: relative;
+  border-radius: 0% 50% 50% 0;
+  top: 43%;
+}
+
+.red-planet > .planet-left-row {
+  width: 100px;
+  height: 6px;
+  background-color: #7922228a;
+  position: relative;
+  border-radius: 50% 0% 50% 50%;
+  top: 62%;
+  left: 46%;
+}
+
+.purple-planet > .planet-crater-med {
+  background-color: #41227957;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 140px;
+  left: 50px;
+  border-radius: 50%;
+}
+
+.purple-planet > .planet-crater-small {
+  background-color: #41227957;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 40px;
+  left: 150px;
+  border-radius: 50%;
+}
+
+.purple-planet > .planet-right-row {
+  width: 127px;
+  height: 13px;
+  background-color: #412279;
+  position: relative;
+  border-radius: 0% 50% 50% 0;
+  top: 43%;
+}
+
+.purple-planet > .planet-left-row {
+  width: 100px;
+  height: 6px;
+  background-color: #4122798a;
+  position: relative;
+  border-radius: 50% 0% 50% 50%;
+  top: 62%;
+  left: 46%;
+}
+
+.word-div {
+  position: absolute;
+  top: -40px;
+}
+
+.word-div span {
+  font-size: 35px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 1);
+  transform: scale(1);
+  animation: pulse 1.5s infinite;
+}
+
+.bullet {
+  width: 3px;
+  height: 13px;
+  box-shadow: 0px 0px 25px 0px green, 0px 0px 25px 3px green,
+    inset 0px 0px 7px 0px green;
+  background: #fff;
+  bottom: 0;
+  position: absolute;
+  bottom: -10px;
+  left: 50vw;
+  top: 110vh;
+  border-radius: 50%;
+}
+
+.rocket-container {
+  position: absolute;
+  bottom: 10px;
+  animation: 3s fly infinite;
+}
+
+.rocket-head {
+  height: 20px;
+  width: 5px;
+  position: relative;
+  border-bottom: 22px solid #fff;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.rocket-cabine {
+  height: 10px;
+  background-color: #fff;
+}
+
+.rocket-window {
+  width: 15px;
+  background: #5abeff;
+  height: 7px;
+  position: absolute;
+  left: 5px;
+}
+
+.rocket-body {
+  background-color: #e2e2e2;
+  width: 25px;
+  height: 60px;
+  border-top: 2px solid #e2e2e2;
+  border-bottom: 2px solid #e2e2e2;
+}
+
+.rocket-body::after {
+  content: "";
+  background: #fff;
+  width: 13px;
+  height: 60px;
+  z-index: 1;
+  display: block;
+  position: absolute;
+  left: 12px;
+}
+
+.rocket-left-wing {
+  width: 5px;
+  border-bottom: 53px solid white;
+  border-left: 18px solid transparent;
+  position: absolute;
+  bottom: 9px;
+  right: 25px;
+}
+
+.rocker-left-wing-edge {
+  position: absolute;
+  width: 5px;
+  border-bottom: 40px solid #fff;
+  border-left: 35px solid transparent;
+  border-bottom-left-radius: 18%;
+  right: 25px;
+  bottom: 9px;
+}
+
+.rocket-right-wing {
+  width: 5px;
+  border-bottom: 53px solid white;
+  border-right: 18px solid transparent;
+  position: absolute;
+  bottom: 9px;
+  left: 25px;
+}
+
+.rocket-right-wing::after {
+  content: "";
+  background: #c3c3c3;
+  width: 4px;
+  height: 53px;
+  z-index: 1;
+  display: block;
+  position: absolute;
+}
+
+.rocker-right-wing-edge {
+  position: absolute;
+  width: 5px;
+  border-bottom: 40px solid #fff;
+  border-right: 35px solid transparent;
+  border-bottom-right-radius: 18%;
+  left: 25px;
+  bottom: 9px;
+}
+
+.rocket-engine {
+  width: 25px;
+  border-bottom: 10px solid #575656;
+  position: absolute;
+  top: 115px;
+}
+
+.wind div {
+  position: absolute;
+  width: 1px;
+  background: #fff;
+  animation: 3s wind infinite;
+}
+
+.rocket-wind-1 {
+  height: 20px;
+  top: 3px;
+}
+
+.rocket-wind-2 {
+  height: 17px;
+
+  left: 50px;
+  top: 55px;
+}
+
+.rocket-wind-3 {
+  height: 12px;
+  top: 68px;
+  right: 55px;
+}
+
+.rocket-wind-4 {
+  height: 15px;
+  top: 118px;
+  left: 34px;
+}
+
+.rocket-wind-5 {
+  height: 10px;
+  top: 120px;
+  right: 34px;
+}
+
+#lose-dialog::backdrop,
+#win-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+dialog {
+  text-align: center;
+  width: 70%;
+  font-size: 1rem;
+  background-color: #e7e7e7;
+}
+
+dialog::backdrop {
+  background-color: #000000a0;
+}
+
+dialog button,
+dialog a {
+  padding: 10px;
+  border: none;
+  background-color: #412279;
+  color: #fff;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.keyboard-key {
+  background: #fff;
+  margin: 0px;
+  color: #000;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  display: inline-flex;
+  -webkit-box-shadow: 12px 10px 0px 17px rgba(176, 176, 174, 1);
+  -moz-box-shadow: 12px 10px 0px 17px rgba(176, 176, 174, 1);
+  box-shadow: 1px 1px 0px 2px rgba(176, 176, 174, 1);
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes fly {
+  50% {
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes planet {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes wind {
+  50% {
+    transform: translateY(200px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    text-shadow: 0px -10px 25px rgba(255, 255, 255, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    text-shadow: 0px -15px 30px rgba(255, 255, 255, 0.7);
+  }
+
+  100% {
+    transform: scale(0.95);
+    text-shadow: 0px -10px 25px rgba(255, 255, 255, 0.7);
+  }
+}
