@@ -55,7 +55,6 @@ const restartGame = () => {
 
 const showWordsInDom = () => {
     wordList = getRandomWordArray(wordSet, defaultLevelArrayLength);
-    console.log(wordList)
     wordList.forEach((word, index) => {
         const spannedWord = buildWordDomNode(word, index);
         wordContainerElement.appendChild(spannedWord);
