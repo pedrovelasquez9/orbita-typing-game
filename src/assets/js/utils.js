@@ -3,7 +3,6 @@ export const getRandomValue = (max, min = 1) => {
 }
 
 export const getRandomWordArray = (wordArray, desiredLength) => {
-    console.log(wordArray.length);
     //gets random unique words from the array 
     const words = [];
     if (wordArray.length < desiredLength) {
