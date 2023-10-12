@@ -43,7 +43,7 @@ main {
 
 .planet {
   border-radius: 50%;
-  position: absolute;
+  position: fixed;
   animation: 2s planet infinite;
   animation-timing-function: linear;
 }

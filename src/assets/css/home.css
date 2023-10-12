@@ -12,16 +12,19 @@ a {
 
 .main-card-container {
   background: #fff1;
-  padding: 70px 200px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 50px;
+  width: 40vw;
+  height: 30vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-card-container button,
 .main-card-container a {
-  width: 300px;
+  width: 70%;
   height: 50px;
   background: transparent;
   border: 2px solid #fff;
