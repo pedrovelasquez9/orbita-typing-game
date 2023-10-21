@@ -1,17 +1,20 @@
 import { getRandomValue, getRandomWordArray, removeAllChildNodes } from './utils.js';
 import { wordArray } from './data.js';
 
-//create word array 
-let wordSet = [];
-let actualWord = [];
-let splittedActualWord = [];
-let writtingWord = '';
+let wordSetList = [];
+let writtingWordProgressArray = [];
+let splittedCurrentlyWrittingWord = [];
+let currentlyWrittingWord = '';
 let completedWords = [];
 let wordList = [];
 let score = 0;
 let scoreToWin = 100;
 const defaultLevelArrayLength = 10;
 const defaultFallDuration = 33;
+const horizontalMaxPosition = 80;
+const horizontalMinPosition = 10;
+const fallDelaySeconds = 1.5;
+const fallDurationSeconds = 3;
 const wordContainerElement = document.querySelector('#word');
 const scoreDomNode = document.querySelector("#score");
 const loseModal = document.querySelector("#lose-dialog");
@@ -28,7 +31,7 @@ const registerRestartEvent = () => {
 };
 
 const initializeWordArray = () => {
-    wordSet = Array.from(new Set(structuredClone(wordArray)));
+    wordSetList = Array.from(new Set(structuredClone(wordArray)));
 }
 
 const checkIfUserLoses = () => {
@@ -54,19 +57,19 @@ const restartGame = () => {
 }
 
 const showWordsInDom = () => {
-    wordList = getRandomWordArray(wordSet, defaultLevelArrayLength);
+    wordList = getRandomWordArray(wordSetList, defaultLevelArrayLength);
     wordList.forEach((word, index) => {
-        const spannedWord = buildWordDomNode(word, index);
-        wordContainerElement.appendChild(spannedWord);
+        const domNodeWithWord = buildWordDomNode(word, index);
+        wordContainerElement.appendChild(domNodeWithWord);
     });
 };
 
 const buildWordDomNode = (word) => {
     const wordElement = document.createElement('div');
     const wordElementCount = document.querySelectorAll('.word-div').length;
-    const horizontalPosition = `${getRandomValue(80, 10)}%`;
-    const fallDelay = `${wordElementCount * 1.5}s`;
-    const fallDuration = `${defaultFallDuration - ((score / defaultLevelArrayLength) * 3)}s`;
+    const horizontalPosition = `${getRandomValue(horizontalMaxPosition, horizontalMinPosition)}%`;
+    const fallDelay = `${wordElementCount * fallDelaySeconds}s`;
+    const fallDuration = `${defaultFallDuration - ((score / defaultLevelArrayLength) * fallDurationSeconds)}s`;
     wordElement.id = word;
     wordElement.classList = 'word-div';
     wordElement.style.animation = `fall ${fallDuration} ${fallDelay} linear`;
@@ -82,7 +85,7 @@ const buildWordDomNode = (word) => {
 }
 
 const shoot = () => {
-    const { x, y } = document.querySelector(`#${writtingWord}`).getBoundingClientRect();
+    const { x, y } = document.querySelector(`#${currentlyWrittingWord}`).getBoundingClientRect();
     const bullet = document.querySelector('#bullet');
     bullet.style.transition = 'all 0.1s ease';
     bullet.style.left = `${x + 5}px`;
@@ -94,9 +97,9 @@ const shoot = () => {
     }, 100);
 }
 
-const reactToShoot = (actualWord, splittedActualWord) => {
-    actualWord.push(splittedActualWord.shift());
-    document.querySelector(`#${writtingWord}`).children[actualWord.length - 1].style.color = 'orange';
+const reactToShoot = (writtingWordProgressArray, splittedCurrentlyWrittingWord) => {
+    writtingWordProgressArray.push(splittedCurrentlyWrittingWord.shift());
+    document.querySelector(`#${currentlyWrittingWord}`).children[writtingWordProgressArray.length - 1].style.color = 'orange';
 }
 
 const updateScore = () => {
@@ -109,35 +112,35 @@ const checkIfUserWins = () => {
 }
 
 const handleCompletedWord = () => {
-    wordContainerElement.removeChild(document.querySelector(`#${writtingWord}`));
-    completedWords.push(writtingWord);
-    wordList = wordList.filter(word => word !== writtingWord);
-    actualWord = [];
-    writtingWord = '';
+    wordContainerElement.removeChild(document.querySelector(`#${currentlyWrittingWord}`));
+    completedWords.push(currentlyWrittingWord);
+    wordList = wordList.filter(word => word !== currentlyWrittingWord);
+    writtingWordProgressArray = [];
+    currentlyWrittingWord = '';
 }
 
 //listen to keyboard input key event 
 const detectKeyTyping = () => {
     document.addEventListener('keydown', function (event) {
-        let letter = event.key.toLowerCase();
-        const mapItem = wordList.find(word => word && word[0] === letter);
+        let typedLetter = event.key.toLowerCase();
+        const foundWord = wordList.find(word => word && word[0] === typedLetter);
 
-        if (mapItem && !writtingWord) {
-            const { top } = document.querySelector(`#${mapItem}`)?.getBoundingClientRect();
+        if (foundWord && !currentlyWrittingWord) {
+            const { top } = document.querySelector(`#${foundWord}`)?.getBoundingClientRect();
             if (top && top > 0) {
-                writtingWord = mapItem;
-                splittedActualWord = mapItem.split('');
-                shoot(writtingWord);
-                reactToShoot(actualWord, splittedActualWord, writtingWord);
+                currentlyWrittingWord = foundWord;
+                splittedCurrentlyWrittingWord = foundWord.split('');
+                shoot(currentlyWrittingWord);
+                reactToShoot(writtingWordProgressArray, splittedCurrentlyWrittingWord, currentlyWrittingWord);
             }
         }
 
-        if (writtingWord.length > 0 && letter === splittedActualWord[0]) {
-            shoot(writtingWord);
-            reactToShoot(actualWord, splittedActualWord, writtingWord);
+        if (currentlyWrittingWord.length > 0 && typedLetter === splittedCurrentlyWrittingWord[0]) {
+            shoot(currentlyWrittingWord);
+            reactToShoot(writtingWordProgressArray, splittedCurrentlyWrittingWord, currentlyWrittingWord);
         }
 
-        if (actualWord.length > 0 && actualWord.join('') === writtingWord) {
+        if (writtingWordProgressArray.length > 0 && writtingWordProgressArray.join('') === currentlyWrittingWord) {
             handleCompletedWord();
             updateScore();
         }
