@@ -1,5 +1,5 @@
 import { getRandomValue, getRandomWordArray, removeAllChildNodes } from './utils.js';
-import { wordArray } from './data.js';
+import { getWordsArrayBySettingsOrPlatform } from './data.js';
 
 let wordSetList = [];
 let writtingWordProgressArray = [];
@@ -31,7 +31,7 @@ const registerRestartEvent = () => {
 };
 
 const initializeWordArray = () => {
-    wordSetList = Array.from(new Set(structuredClone(wordArray)));
+    wordSetList = Array.from(new Set(structuredClone(getWordsArrayBySettingsOrPlatform())));
 }
 
 const checkIfUserLoses = () => {
@@ -58,8 +58,8 @@ const restartGame = () => {
 
 const showWordsInDom = () => {
     wordList = getRandomWordArray(wordSetList, defaultLevelArrayLength);
-    wordList.forEach((word, index) => {
-        const domNodeWithWord = buildWordDomNode(word, index);
+    wordList.forEach((word) => {
+        const domNodeWithWord = buildWordDomNode(word);
         wordContainerElement.appendChild(domNodeWithWord);
     });
 };
@@ -130,14 +130,14 @@ const detectKeyTyping = () => {
             if (top && top > 0) {
                 currentlyWrittingWord = foundWord;
                 splittedCurrentlyWrittingWord = foundWord.split('');
-                shoot(currentlyWrittingWord);
-                reactToShoot(writtingWordProgressArray, splittedCurrentlyWrittingWord, currentlyWrittingWord);
+                shoot();
+                reactToShoot(writtingWordProgressArray, splittedCurrentlyWrittingWord);
             }
         }
 
         if (currentlyWrittingWord.length > 0 && typedLetter === splittedCurrentlyWrittingWord[0]) {
-            shoot(currentlyWrittingWord);
-            reactToShoot(writtingWordProgressArray, splittedCurrentlyWrittingWord, currentlyWrittingWord);
+            shoot();
+            reactToShoot(writtingWordProgressArray, splittedCurrentlyWrittingWord);
         }
 
         if (writtingWordProgressArray.length > 0 && writtingWordProgressArray.join('') === currentlyWrittingWord) {
