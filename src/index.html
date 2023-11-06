@@ -63,6 +63,7 @@
         <div class="main-card-container">
           <a href="./game.html">Nueva partida</a>
           <button id="instructions-btn">Instrucciones</button>
+          <button id="open-settings-btn">Configuración</button>
         </div>
       </main>
       <footer>
@@ -70,6 +71,7 @@
         <a href="https://programacion-es.dev/redes/">Programación en español</a>
       </footer>
     </div>
+    <!-- Instructions dialog -->
     <dialog id="instructions-modal">
       <section>
         <h1>Esta es tu misión</h1>
@@ -93,12 +95,38 @@
         <button id="close-instructions-modal-btn">¡Adelante!</button>
       </section>
     </dialog>
+    <!-- Settings dialog -->
+    <dialog id="settings-modal">
+      <section>
+        <h1>Configuración de la partida</h1>
+        <form class="modal-form" id="settings-form">
+          <div class="modal-form-row">
+            <label for="enable-accents">Habilitar acentos</label>
+            <div class="accents-checkbox-container r" id="accents-btn">
+              <input
+                type="checkbox"
+                class="checkbox"
+                name="enable-accents"
+                id="enable-accents-checkbox"
+              />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+            <span
+              >NOTA: en MacOS/Linux los acentos estarán inhabilitados
+              independientemente de tu configuración</span
+            >
+          </div>
+        </form>
+        <button id="close-settings-modal-btn">Guardar configuración</button>
+      </section>
+    </dialog>
     <script
       defer
       data-domain="programacion-es.dev/orbita"
       src="https://plausible.io/js/script.js"
     ></script>
-    <script src="./assets/js/modalControls.js"></script>
+    <script type="module" src="./assets/js/modalControls.js"></script>
     <script src="./assets/js/easterEggs.js"></script>
   </body>
 </html>

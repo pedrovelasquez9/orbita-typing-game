@@ -1,3 +1,7 @@
+const DEFAULT_SETTINGS = {
+    "enable-accents": "on"
+}
+
 export const getRandomValue = (max, min = 1) => {
     return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -23,3 +27,29 @@ export const removeAllChildNodes = (parent) => {
         parent.removeChild(parent.firstChild);
     }
 }
+
+export const saveSettingsInLocalStorage = (settingsFormDataObject) => {
+    localStorage.setItem('orbitaSettings', JSON.stringify(settingsFormDataObject));
+}
+
+export const getSettingsFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem('orbitaSettings'));
+}
+
+export const initializeSettings = (settingsForm) => {
+    const savedSettings = getSettingsFromLocalStorage();
+    if (!savedSettings) {
+        saveSettingsInLocalStorage(DEFAULT_SETTINGS);
+        applySettingsToForm(settingsForm, DEFAULT_SETTINGS);
+    };
+    applySettingsToForm(settingsForm, savedSettings);
+};
+
+export const applySettingsToForm = (settingsForm, settings) => {
+    Object.keys(settings).forEach(key => {
+        if (settingsForm[key].type === 'checkbox' && settings[key] === 'on') {
+            settingsForm[key].checked = true;
+        }
+        settingsForm[key].value = settings[key];
+    });
+};
