@@ -47,3 +47,116 @@ a {
   transition: 0.5s all ease-in-out;
   border: 2px solid #673ab7;
 }
+
+/* Settings modal */
+
+.modal-form {
+  display: flex;
+  align-items: center;
+  margin: 50px;
+}
+
+.modal-form label {
+  font-weight: bold;
+}
+
+.modal-form-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10%;
+  width: 100%;
+}
+
+.modal-form-row span {
+  font-weight: bold;
+}
+
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.accents-checkbox-container {
+  position: relative;
+  top: 50%;
+  width: 90px;
+  height: 36px;
+  overflow: hidden;
+}
+
+.accents-checkbox-container.r,
+.accents-checkbox-container.r .layer {
+  border-radius: 100px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #fcebeb;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+#accents-btn .knobs:after,
+#accents-btn .knobs:before {
+  position: absolute;
+  top: -28px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#accents-btn .knobs:before {
+  content: "Sí";
+}
+
+#accents-btn .knobs:after {
+  content: "No";
+}
+
+#accents-btn .knobs:after {
+  top: 4px;
+  right: 4px;
+  left: auto;
+  background-color: #f44336;
+}
+
+#accents-btn .checkbox:checked + .knobs:after {
+  top: -28px;
+}
+
+#accents-btn .checkbox:checked + .knobs:before {
+  top: 4px;
+}
+
+#accents-btn .checkbox:checked ~ .layer {
+  background-color: #ebf7fc;
+}

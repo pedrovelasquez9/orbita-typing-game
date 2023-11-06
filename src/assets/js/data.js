@@ -1,4 +1,5 @@
-export const wordArray = [
+import { getSettingsFromLocalStorage } from './utils.js';
+const wordArray = [
     "aventura", "mariposa", "complejo", "felicidad", "fantástico", "elefante",
     "misterio", "tecnología", "creatividad", "universidad", "maravilla", "increíble",
     "esperanza", "naturaleza", "personalidad", "imposible", "interesante", "silencioso",
@@ -7,7 +8,7 @@ export const wordArray = [
     "pasión", "recomendación", "delicioso", "encantador", "inspiración", "espectacular",
     "adrenalina", "crecimiento", "enriquecedor", "efervescencia", "vulnerabilidad",
     "extraordinario", "resplandor", "perspectiva", "atractivo", "consistencia", "enigmático",
-    "marioneta", "sentimiento", "travesía", "atmosfera", "realidad", "adversidad",
+    "marioneta", "sentimiento", "travesía", "atmósfera", "realidad", "adversidad",
     "magnífico", "similitud", "paralelo", "infinito", "aprendizaje", "colaboración",
     "independencia", "trascendencia", "equilibrio", "pintura", "alucinante", "revolución",
     "inteligencia", "espontáneo", "satisfacción", "transformación", "cuestionamiento",
@@ -33,3 +34,22 @@ export const wordArray = [
     "desarrollo", "cuestionamiento", "extraordinario", "posibilidad", "abundancia",
     "compartir", "despertar", "esencia", "riqueza", "compromiso", "época", "sabiduría"
 ];
+
+export const getWordsArrayBySettingsOrPlatform = () => {
+
+    const gameSettings = getSettingsFromLocalStorage();
+    //check if its windows or mac os
+    if (navigator.userAgent.includes('Win') && gameSettings?.['enable-accents']) {
+        return wordArray;
+    }
+    return removeAccentsFromWordsArray();
+}
+
+const removeAccentsFromWordsArray = () => {
+    return wordArray.filter(word => !hasAccent(word));
+}
+
+const hasAccent = (word) => {
+    const specialChars = /[áéíóúÁÉÍÓÚ]/;
+    return specialChars.test(word);
+}
