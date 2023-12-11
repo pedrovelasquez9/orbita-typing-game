@@ -413,3 +413,10 @@ dialog a {
     text-shadow: 0px -10px 25px rgba(255, 255, 255, 0.7);
   }
 }
+
+/* responsive design */
+@media (max-width: 620px) {
+  .planet-right {
+    z-index: -1;
+  }
+}
