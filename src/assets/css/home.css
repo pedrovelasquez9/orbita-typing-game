@@ -20,6 +20,7 @@ a {
   height: 30vh;
   justify-content: center;
   align-items: center;
+  margin: 10px 0;
 }
 
 .main-card-container button,
@@ -30,9 +31,9 @@ a {
   border: 2px solid #fff;
   border-radius: 5px;
   color: #fff;
-  font-size: 16px;
   text-align: center;
   text-decoration: none;
+  font-size: clamp(0.7rem, 1vw, 1vw);
 }
 
 .main-card-container a {
@@ -46,6 +47,41 @@ a {
   background-color: #412279;
   transition: 0.5s all ease-in-out;
   border: 2px solid #673ab7;
+}
+
+.extra-links-container {
+  display: grid;
+  grid-template-areas:
+    "link1 link2"
+    "link3 link3";
+  font-size: clamp(0.75rem, 1vw, 1vw);
+  gap: 10px;
+  width: 40vw;
+  text-align: center;
+}
+
+.extra-links-container a {
+  padding: 10px 0;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.github-link {
+  grid-area: link1;
+  background-color: #333;
+  color: #fff;
+}
+
+.code-video-link {
+  grid-area: link2;
+  background-color: #b73a3a;
+  color: #fff;
+}
+
+.coffee-link {
+  grid-area: link3;
+  background-color: #ffe600;
+  color: #000;
 }
 
 /* Settings modal */
@@ -159,4 +195,15 @@ a {
 
 #accents-btn .checkbox:checked ~ .layer {
   background-color: #ebf7fc;
+}
+
+/* responsive design */
+@media (max-width: 620px) {
+  .extra-links-container {
+    display: grid;
+    grid-template-areas:
+      "link1"
+      "link2"
+      "link3";
+  }
 }
