@@ -418,5 +418,6 @@ dialog a {
 @media (max-width: 620px) {
   .planet-right {
     z-index: -1;
+    bottom: 80px;
   }
 }
