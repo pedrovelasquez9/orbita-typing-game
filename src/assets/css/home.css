@@ -96,9 +96,9 @@ a {
 
 .modal-form-row {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 10%;
+  gap: 20px;
   width: 100%;
 }
 
@@ -203,5 +203,19 @@ a {
       "link1"
       "link2"
       "link3";
+    width: -webkit-fill-available;
+  }
+
+  .main-card-container {
+    width: -webkit-fill-available;
+  }
+
+  #settings-modal {
+    width: -webkit-fill-available;
+  }
+
+  .modal-form-row {
+    flex-direction: column;
+    gap: 10px;
   }
 }
