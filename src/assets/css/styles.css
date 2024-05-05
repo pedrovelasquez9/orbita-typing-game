@@ -184,8 +184,16 @@ main {
 
 .rocket-container {
   position: absolute;
+  transition: all 1s ease;
   bottom: 10px;
+  left: 50vw;
   animation: 3s fly infinite;
+}
+
+.star {
+  background-color: #fff;
+  position: absolute;
+  top: -100px;
 }
 
 .rocket-head {
