@@ -53,3 +53,24 @@ export const applySettingsToForm = (settingsForm, settings) => {
         settingsForm[key].value = settings[key];
     });
 };
+
+export const createStars = (density) => {
+    const mainContainer = document.querySelector("body");
+    for (let i = 0; i < density; i++) {
+        const star = document.createElement("span");
+        const horizontalPosition = `${getRandomValue(100)}%`;
+        const fallDelay = `${getRandomValue(100)}s`;
+        const fallDuration = `${getRandomValue(30, 5)}s`;
+        const starSize = `${getRandomValue(7, 1)}px`;
+        const starOpacity = Math.random().toFixed(2);
+
+        star.classList.add("star");
+        star.style.opacity = starOpacity;
+        star.style.width = starSize;
+        star.style.height = starSize;
+        star.style.animation = `fall ${fallDuration} ${fallDelay} linear infinite`;
+        star.style.right = horizontalPosition;
+
+        mainContainer.appendChild(star);
+    }
+};

@@ -1,4 +1,4 @@
-import { getRandomValue, getRandomWordArray, removeAllChildNodes } from './utils.js';
+import { getRandomValue, getRandomWordArray, removeAllChildNodes, createStars } from './utils.js';
 import { getWordsArrayBySettingsOrPlatform } from './data.js';
 
 let wordSetList = [];
@@ -92,9 +92,16 @@ const shoot = () => {
     bullet.style.top = `${y + 10}px`;
     bullet.style.display = 'block';
     setTimeout(() => {
-        bullet.style.left = '50vw';
+        bullet.style.left = `${x + 100}px`;
         bullet.style.top = '110vh';
     }, 100);
+}
+
+const moveShipHorizontally = () => {
+    const { x } = document.querySelector(`#${currentlyWrittingWord}`).getBoundingClientRect();
+    const rocketShip = document.querySelector("#rocket-ship");
+    rocketShip.style.transition = "all 1s ease 0"
+    rocketShip.style.left = `${x + 100}px`;
 }
 
 const reactToShoot = (writtingWordProgressArray, splittedCurrentlyWrittingWord) => {
@@ -130,12 +137,14 @@ const detectKeyTyping = () => {
             if (top && top > 0) {
                 currentlyWrittingWord = foundWord;
                 splittedCurrentlyWrittingWord = foundWord.split('');
+                moveShipHorizontally();
                 shoot();
                 reactToShoot(writtingWordProgressArray, splittedCurrentlyWrittingWord);
             }
         }
 
         if (currentlyWrittingWord.length > 0 && typedLetter === splittedCurrentlyWrittingWord[0]) {
+            moveShipHorizontally();
             shoot();
             reactToShoot(writtingWordProgressArray, splittedCurrentlyWrittingWord);
         }
@@ -159,6 +168,7 @@ const initGame = () => {
     detectKeyTyping();
     checkIfUserLoses();
     updateScore();
+    createStars(100);
 }
 
 // First call
