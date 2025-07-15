@@ -85,7 +85,7 @@ const buildWordDomNode = (word) => {
 }
 
 const shoot = () => {
-    const { x, y } = document.querySelector(`#${currentlyWrittingWord}`).getBoundingClientRect();
+    const { x, y } = document.querySelector(`#${currentlyWrittingWord}`)?.getBoundingClientRect();
     const bullet = document.querySelector('#bullet');
     bullet.style.transition = 'all 0.1s ease';
     bullet.style.left = `${x + 5}px`;
@@ -98,7 +98,7 @@ const shoot = () => {
 }
 
 const moveShipHorizontally = () => {
-    const { x } = document.querySelector(`#${currentlyWrittingWord}`).getBoundingClientRect();
+    const { x } = document.querySelector(`#${currentlyWrittingWord}`)?.getBoundingClientRect();
     const rocketShip = document.querySelector("#rocket-ship");
     rocketShip.style.transition = "all 1s ease 0"
     rocketShip.style.left = `${x + 100}px`;
